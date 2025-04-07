@@ -1,0 +1,6 @@
+@RoC.WebApi_HostAddress = http://localhost:5237
+
+GET {{RoC.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
