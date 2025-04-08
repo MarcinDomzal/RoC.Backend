@@ -1,3 +1,4 @@
+using RoC.Application.Logic.Abstractions;
 using RoC.Infrastructure.Persistence;
 using Serilog;
 
@@ -32,6 +33,11 @@ namespace RoC.WebApi
             // Add services to the container.
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
+
+            builder.Services.AddMediatR(c =>
+            {
+                c.RegisterServicesFromAssemblyContaining(typeof(BaseCommandHandler));
+            });
 
             var app = builder.Build();
 
