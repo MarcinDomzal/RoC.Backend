@@ -2,6 +2,7 @@ using RoC.Application.Logic.Abstractions;
 using RoC.Infrastructure.Persistence;
 using RoC.WebApi.Middlewares;
 using Serilog;
+using RoC.Application;
 
 namespace RoC.WebApi
 {
@@ -40,6 +41,7 @@ namespace RoC.WebApi
                 c.RegisterServicesFromAssemblyContaining(typeof(BaseCommandHandler));
             });
 
+            builder.Services.AddApplicationServices();
             var app = builder.Build();
 
             app.UseExceptionResultMiddleware();
