@@ -1,3 +1,4 @@
+using RoC.Infrastructure.Persistence;
 using Serilog;
 
 namespace RoC.WebApi
@@ -24,7 +25,7 @@ namespace RoC.WebApi
             .Enrich.FromLogContext());
 
             // Add services to the container.
-
+            builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
 
             var app = builder.Build();
