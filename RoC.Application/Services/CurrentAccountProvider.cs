@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCoreSecondLevelCacheInterceptor;
+using Microsoft.EntityFrameworkCore;
 using RoC.Application.Exceptions;
 using RoC.Application.Interfaces;
 using RoC.Domain.Entities;
@@ -29,6 +30,7 @@ namespace RoC.Application.Services
                     .Where(au => au.UserId == userId.Value)
                     .OrderBy(au => au.Id)
                     .Select(au => (int)au.AccountId)
+                    .Cacheable()
                     .FirstOrDefaultAsync();
             }
 
