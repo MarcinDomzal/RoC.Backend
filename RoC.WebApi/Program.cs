@@ -1,5 +1,6 @@
 using RoC.Application.Logic.Abstractions;
 using RoC.Infrastructure.Persistence;
+using RoC.WebApi.Middlewares;
 using Serilog;
 
 namespace RoC.WebApi
@@ -40,6 +41,8 @@ namespace RoC.WebApi
             });
 
             var app = builder.Build();
+
+            app.UseExceptionResultMiddleware();
 
             // Configure the HTTP request pipeline.
 
