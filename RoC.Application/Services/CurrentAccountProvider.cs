@@ -40,13 +40,13 @@ namespace RoC.Application.Services
         public async Task<Account> GetAuthenticatedAccount()
         {
             var accountId = await GetAccountId();
-            if (accountId == null) 
+            if (accountId == null)
             {
                 throw new UnauthorizedException();
             }
 
-            var account = await _applicationDbContext.Accounts.FirstOrDefaultAsync(a => a.Id == accountId.Value);
-            if (account == null) 
+            var account = await _applicationDbContext.Accounts.Cacheable().FirstOrDefaultAsync(a => a.Id == accountId.Value);
+            if (account == null)
             {
                 throw new ErrorException("AccountDoesNotExist");
             }
@@ -55,3 +55,4 @@ namespace RoC.Application.Services
         }
     }
 }
+ 
