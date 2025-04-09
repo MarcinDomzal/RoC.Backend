@@ -1,5 +1,6 @@
 using RoC.Application.Logic.Abstractions;
 using RoC.Infrastructure.Persistence;
+using RoC.Infrastructure.Auth;
 using RoC.WebApi.Middlewares;
 using Serilog;
 using RoC.Application;
@@ -40,7 +41,7 @@ namespace RoC.WebApi
             builder.Services.AddControllers();
             builder.Services.AddJwtAuth(builder.Configuration);
             builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
-
+            builder.Services.AddPasswordManager();
 
             builder.Services.AddMediatR(c =>
             {

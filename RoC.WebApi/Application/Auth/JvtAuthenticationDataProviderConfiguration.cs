@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RoC.WebApi.Application.Auth
 {
-    public static class JvtAuthConfiguration
+    public static class JvtAuthenticationDataProviderConfiguration
     {
         public static IServiceCollection AddJwtAuthenticationDataProvider(this IServiceCollection services, IConfiguration configuration)
         {
