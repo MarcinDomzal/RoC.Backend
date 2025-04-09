@@ -18,6 +18,8 @@ namespace RoC.Infrastructure.Persistence
         {
 
             services.Configure<JwtAuthenticationOptions>(configuration.GetSection("JwtAuthentication"));
+            services.AddSingleton<JwtManager>();
+
             return services;
         }
     }
