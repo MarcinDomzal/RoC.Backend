@@ -3,6 +3,7 @@ using RoC.Infrastructure.Persistence;
 using RoC.WebApi.Middlewares;
 using Serilog;
 using RoC.Application;
+using RoC.WebApi.Application.Auth;
 
 namespace RoC.WebApi
 {
@@ -33,10 +34,13 @@ namespace RoC.WebApi
             .Enrich.FromLogContext());
 
             // Add services to the container.
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
             builder.Services.AddJwtAuth(builder.Configuration);
+            builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
+
 
             builder.Services.AddMediatR(c =>
             {
