@@ -17,4 +17,4 @@ namespace RoC.Domain.Entities
 
         public User User { get; set; } = default!;
     }
-}
+} 
