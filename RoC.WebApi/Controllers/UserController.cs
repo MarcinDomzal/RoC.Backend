@@ -42,6 +42,13 @@ namespace RoC.WebApi.Controllers
             return Ok(new JwtToken() { AccessToken = token });
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Logout()
+        {
+            var logoutResult = await _mediator.Send(new LogoutCommand.Request());
+            DeleteTokenCookie();
+            return Ok(logoutResult);
+        }
 
         private void SetTokenCookie(string token)
         {
@@ -67,7 +74,15 @@ namespace RoC.WebApi.Controllers
             Response.Cookies.Append(CookieSettings.CookieName, token, cookieOption);
         }
 
-       
+        private void DeleteTokenCookie()
+        {
+            Response.Cookies.Delete(CookieSettings.CookieName, new CookieOptions()
+            {
+                HttpOnly = true,
+            });
+        }
+
+
 
 
     }
