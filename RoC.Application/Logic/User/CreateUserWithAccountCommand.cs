@@ -35,6 +35,7 @@ namespace RoC.Application.Logic.User
 
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
+                // var userExists = await _applicationDbContext.Users.AnyAsync(u => u.Email == request.Email);
                 var userExists = await _applicationDbContext.Users.AnyAsync(u => u.Email == request.Email);
                 if (userExists)
                 {
