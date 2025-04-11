@@ -24,7 +24,7 @@ namespace RoC.Application.Services
         public async Task<int?> GetAccountId()
         {
             var userId = _authenticationDataProvider.GetUserId();
-            if (userId == null) 
+            if (userId != null) 
             {
                 return await _applicationDbContext.AccountUsers
                     .Where(au => au.UserId == userId.Value)
