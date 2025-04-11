@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RoC.Application.Interfaces;
 using RoC.Application.Logic.Abstractions;
@@ -76,6 +77,19 @@ namespace RoC.Application.Logic.User
                 { 
                     UserId = user.Id 
                 };
+            }
+        }
+
+        public class Validator : AbstractValidator<Request>
+        {
+            public Validator()
+            {
+                RuleFor(x => x.Email).NotEmpty();
+                RuleFor(x => x.Email).EmailAddress();
+                RuleFor(x=> x.Email).MaximumLength(100);
+
+                RuleFor(x=>x.Password).NotEmpty();
+                RuleFor(x=>x.Password).MaximumLength(50);
             }
         }
     }
