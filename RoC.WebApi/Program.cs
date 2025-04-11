@@ -6,6 +6,8 @@ using Serilog;
 using RoC.Application;
 using RoC.WebApi.Application.Auth;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RoC.WebApi
 {
@@ -45,7 +47,8 @@ namespace RoC.WebApi
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }
-            });
+            }).AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             builder.Services.AddJwtAuth(builder.Configuration);
             builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
             builder.Services.AddPasswordManager();
