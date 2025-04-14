@@ -9,7 +9,9 @@ public class Driver
   public required string Pesel { get; set; }
   public string Email { get; set; }
   public string PhoneNumber { get; set; }
-  public string NrLicenses { get; set; }
+  public string NrLicense { get; set; }
   public required DateTime DateOfBirth { get; set; }
+  public int PositionId { get; set; }
+  public int ContractTypeId { get; set; }
   public bool Active { get; set; }
 }
